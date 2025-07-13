@@ -5,58 +5,23 @@ import 'package:resorcode_riverpod_tutorial/providers/counter_provider.dart';
 class CounterPage extends ConsumerWidget {
   const CounterPage({super.key});
 
-  void showCounterDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog.adaptive(
-          title: Text('Warning'),
-          content: Text(
-            'Counter dangerously high.\nConsider resetting it.',
-            style: TextTheme.of(context).bodyMedium,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final counter = ref.watch(counterProvider);
-
-    ref.listen(counterProvider, (previous, next) {
-      if (next >= 5) showCounterDialog(context);
-    });
+    final AsyncValue<int> counter = ref.watch(counterProvider(2));
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter'),
-        actions: [
-          IconButton(
-            onPressed: () => ref.refresh(counterProvider),
-            icon: Icon(Icons.refresh),
-          ),
-        ],
       ),
       body: Center(
         child: Text(
-          '$counter',
-          style: Theme.of(context).textTheme.displayMedium,
+          counter.when(
+            data: (data) => data.toString(),
+            error: (error, stackTrace) => 'Error',
+            loading: () => 'Loading...',
+          ),
+          style: Theme.of(context).textTheme.displaySmall,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(counterProvider.notifier).increment();
-        },
-        child: Icon(Icons.add),
       ),
     );
   }

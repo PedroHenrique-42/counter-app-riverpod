@@ -1,10 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:resorcode_riverpod_tutorial/providers/websocket_client_provider.dart';
 
-class Counter extends Notifier<int> {
-  @override
-  int build() => 0;
-
-  void increment() => state++;
-}
-
-final counterProvider = NotifierProvider<Counter, int>(Counter.new);
+final counterProvider = StreamProvider.autoDispose.family<int, int>((ref, startValue) {
+  final wsClient = ref.watch(websocketClientProvider);
+  return wsClient.getCounterStream(startValue);
+});
