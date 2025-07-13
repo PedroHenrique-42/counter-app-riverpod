@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resorcode_riverpod_tutorial/pages/counter_page.dart';
+import 'package:resorcode_riverpod_tutorial/features/counter/presentation/counter_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

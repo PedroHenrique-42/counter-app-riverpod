@@ -1,4 +1,4 @@
-import 'package:resorcode_riverpod_tutorial/clients/websocket_client.dart';
+import 'package:resorcode_riverpod_tutorial/core/clients/websocket_client.dart';
 
 class FakeWebsocketClient implements WebsocketClient {
   @override

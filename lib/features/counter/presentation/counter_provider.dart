@@ -1,4 +1,4 @@
-import 'package:resorcode_riverpod_tutorial/providers/websocket_client_provider.dart';
+import 'package:resorcode_riverpod_tutorial/core/providers/websocket_client_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'counter_provider.g.dart'; // Necessário para o gerador de código

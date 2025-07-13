@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:resorcode_riverpod_tutorial/pages/home_page.dart';
+import 'package:resorcode_riverpod_tutorial/features/home/presentation/home_page.dart';
 
 void main() {
   runApp(ProviderScope(child: const MainApp()));
